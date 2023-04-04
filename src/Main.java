@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Scanner;
 import static java.lang.Integer.MAX_VALUE;
 
@@ -5,20 +6,25 @@ import static java.lang.Integer.MAX_VALUE;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; i++){
-            arr[i] = in.nextInt();
-        }
-        System.out.println(Util.mid(arr));
+        int num = in.nextInt();
+        System.out.println(Util.prime(num) ? "Prime" : "Composite");
     }
 }
 class Util{
-    static double mid(int[] arr){
-        double num = 0;
-        for(int i = 0 ; i < arr.length; i++){
-            num += arr[i];
+    static boolean prime(int num){
+        HashSet<Integer> set = new HashSet<Integer>();
+        for(int i = 2; i <= num; i++){
+            if(i != num){
+                set.add(i);
+            }
+            else{
+                for(int x : set){
+                    if(num % x == 0){
+                        return false;
+                    }
+                }
+            }
         }
-        return num/arr.length;
+        return true;
     }
 }
