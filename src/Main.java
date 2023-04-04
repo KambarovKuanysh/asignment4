@@ -3,24 +3,19 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int k = scanner.nextInt();
-        System.out.println(Util.sol(k,n));
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        System.out.println(Util.sol(a,b));
     }
 }
 class Util {
-    public static int sol(int k, int n) {
-        if(k == 0 || k == n){
+    public static int sol(int a, int b) {
+        if(a % b == 0){
+            return b;
+        }
+        if(a % b == 1){
             return 1;
         }
-        else {
-            return sol(k - 1, n - 1) + sol(k , n - 1);
-        }
-    }
-    public static int num(int n){
-        if(n == 1){
-            return 1;
-        }
-        return n * num(n - 1);
+        return sol(b, a%b);
     }
 }
