@@ -3,24 +3,24 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String s = scanner.next();
-        System.out.println(Util.sol(s));
+        int n = scanner.nextInt();
+        int k = scanner.nextInt();
+        System.out.println(Util.sol(k,n));
     }
 }
 class Util {
-    public static boolean sol(String s) {
-
-        if (s.length() == 0) {
-            return true;
+    public static int sol(int k, int n) {
+        if(k == 0 || k == n){
+            return 1;
         }
-
-        char firstChar = s.charAt(0);
-
-        if (firstChar >= '0' && firstChar <= '9') {
-            return sol(s.substring(1));
-
-        } else {
-            return false;
+        else {
+            return sol(k - 1, n - 1) + sol(k , n - 1);
         }
+    }
+    public static int num(int n){
+        if(n == 1){
+            return 1;
+        }
+        return n * num(n - 1);
     }
 }
