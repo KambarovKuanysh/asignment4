@@ -7,24 +7,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int num = in.nextInt();
-        System.out.println(Util.prime(num) ? "Prime" : "Composite");
+        System.out.println(Util.num(num));
     }
 }
 class Util{
-    static boolean prime(int num){
-        HashSet<Integer> set = new HashSet<Integer>();
-        for(int i = 2; i <= num; i++){
-            if(i != num){
-                set.add(i);
-            }
-            else{
-                for(int x : set){
-                    if(num % x == 0){
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
+    static int num(int n){
+       if(n == 1){
+           return 1;
+       }
+       return (n * num(n - 1));
     }
 }
