@@ -1,21 +1,26 @@
 import java.util.Scanner;
+import static java.lang.Integer.MAX_VALUE;
 
-class Main {
+
+public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int a = scanner.nextInt();
-        int b = scanner.nextInt();
-        System.out.println(Util.sol(a,b));
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++){
+            arr[i] = in.nextInt();
+        }
+        System.out.println(Util.Min(arr));
     }
 }
-class Util {
-    public static int sol(int a, int b) {
-        if(a % b == 0){
-            return b;
+class Util{
+    static int Min(int[] arr){
+        int min = MAX_VALUE;
+        for(int i = 0 ; i < arr.length; i++){
+            if(arr[i] < min){
+                min = arr[i];
+            }
         }
-        if(a % b == 1){
-            return 1;
-        }
-        return sol(b, a%b);
+        return min;
     }
 }
