@@ -1,24 +1,31 @@
-import java.util.HashSet;
 import java.util.Scanner;
-import static java.lang.Integer.MAX_VALUE;
 
-
-public class Main {
+class Main {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int a = in.nextInt();
-        int n = in.nextInt();
-        System.out.println(Util.power(a, n));
+        Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt();
+        Util.sol(num);
     }
 }
-class Util{
-    static int power(int a, int n){
-        if(a == 0 & n == 0){
-            return 1;
+class Util {
+    public static void sol(int n) {
+        if (n == 0) {
+            return;
         }
-        if(n == 0){
-            return 1;
+        String num = Singleton.getScanner().next();
+        sol(n - 1);
+        System.out.print(num + " ");
+    }
+}
+
+class Singleton {
+    private static Scanner scanner;
+    private Singleton() {}
+
+    public static synchronized Scanner getScanner() {
+        if (scanner == null) {
+            scanner = new Scanner(System.in);
         }
-        return a * power(a, n - 1);
+        return scanner;
     }
 }
