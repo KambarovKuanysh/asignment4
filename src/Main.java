@@ -10,17 +10,15 @@ public class Main {
         for(int i = 0; i < n; i++){
             arr[i] = in.nextInt();
         }
-        System.out.println(Util.Min(arr));
+        System.out.println(Util.mid(arr));
     }
 }
 class Util{
-    static int Min(int[] arr){
-        int min = MAX_VALUE;
+    static double mid(int[] arr){
+        double num = 0;
         for(int i = 0 ; i < arr.length; i++){
-            if(arr[i] < min){
-                min = arr[i];
-            }
+            num += arr[i];
         }
-        return min;
+        return num/arr.length;
     }
 }
