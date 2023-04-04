@@ -3,29 +3,24 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int num = scanner.nextInt();
-        Util.sol(num);
+        String s = scanner.next();
+        System.out.println(Util.sol(s));
     }
 }
 class Util {
-    public static void sol(int n) {
-        if (n == 0) {
-            return;
-        }
-        String num = Singleton.getScanner().next();
-        sol(n - 1);
-        System.out.print(num + " ");
-    }
-}
+    public static boolean sol(String s) {
 
-class Singleton {
-    private static Scanner scanner;
-    private Singleton() {}
-
-    public static synchronized Scanner getScanner() {
-        if (scanner == null) {
-            scanner = new Scanner(System.in);
+        if (s.length() == 0) {
+            return true;
         }
-        return scanner;
+
+        char firstChar = s.charAt(0);
+
+        if (firstChar >= '0' && firstChar <= '9') {
+            return sol(s.substring(1));
+
+        } else {
+            return false;
+        }
     }
 }
