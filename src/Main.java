@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import static java.lang.Integer.MAX_VALUE;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -10,22 +8,22 @@ public class Main {
         for(int i = 0; i < n; i++){
             arr[i] = in.nextInt();
         }
-        System.out.println(Util.getMin(arr));
+        System.out.println(Util.getMid(arr));
     }
 }
 class Util{
     /*
-    @getMin - function takes an array and finds it's minimum by iterating through every member of array and comparing them.
-    @arr - input array which will be searched for minimum value.
-    @return - return returns minimum integer value of the **arr**.
+    @getMid - function iterates through every member of an array adding it to the **num** variable. After iteration this number will be divided to the number of elements
+    in array to find middle value.
+    @arr - input array which will be calculated for middle value.
+    @num - variable which contains sum of all elements of an array. Later will be used in return to be divided and find middle.
+    @return - consists of **num** and length of an array. Returns double value of a middle of array.
      */
-    static int getMin(int[] arr){
-        int min = MAX_VALUE;
+    static double getMid(int[] arr){
+        double num = 0;
         for(int i = 0 ; i < arr.length; i++){
-            if(arr[i] < min){
-                min = arr[i];
-            }
+            num += arr[i];
         }
-        return min;
+        return num/arr.length;
     }
 }
