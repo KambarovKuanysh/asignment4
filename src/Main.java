@@ -3,25 +3,23 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int k = scanner.nextInt();
-        System.out.println(Util.countBinaryCombo(k,n));
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        System.out.println(Util.findGCD(a,b));
     }
 }
 class Util {
     /*
-    @countBinaryCombo - method counts possible binary combination and uses 2 fundamental formulas. Cnk=Cn−1k−1+Cn−1k where Cn0=Cnn=1. Every binary combination can be
-disassembled to "ones". That's what this method does. It primarises counting.
-    @k - integer value for counts of pick.
-    @n - possible variants.
-    @return - program uses given formula to disassemble. It will continue returning formula until it will meet base condition Cn0=Cnn=1 and then add it to return integer sum.
+    @findGCD - method that takes two numbers as an input and finds their GCD. Program uses Euclidean algorithm.
+    @a - first number.
+    @b - second number.
+    @return - program continues to returning reminder of divide between a/b and won't stop 'till see base condition of a % b == 0 which can not be escaped.
+return will give integer value of GCD.
      */
-    public static int countBinaryCombo(int k, int n) {
-        if(k == 0 || k == n){
-            return 1;
+    public static int findGCD(int a, int b) {
+        if(a % b == 0){
+            return b;
         }
-        else {
-            return countBinaryCombo(k - 1, n - 1) + countBinaryCombo(k , n - 1);
-        }
+        return findGCD(b, a%b);
     }
 }
