@@ -1,28 +1,31 @@
 import java.util.Scanner;
+import static java.lang.Integer.MAX_VALUE;
 
 
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
-        System.out.println(Util.isPrime(n) ? "Prime" : "Composite");
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++){
+            arr[i] = in.nextInt();
+        }
+        System.out.println(Util.getMin(arr));
     }
 }
 class Util{
     /*
-    @IsPrime - method takes a number and checks it for primeness using basic mathematical principles -> Number's greatest non-reminder divider its own sqrt.
-    @num - the number that's going to be checked for Primeness.
-    @return - functions returns boolean answer if number prime or composite
+    @getMin - function takes an array and finds it's minimum by iterating through every member of array and comparing them.
+    @arr - input array which will be searched for minimum value.
+    @return - return returns minimum integer value of the **arr**.
      */
-    static boolean isPrime(int num) {
-        if (num < 2) {
-            return false;
-        }
-        for (int i = 2; i <= Math.sqrt(num); i++) {
-            if (num % i == 0) {
-                return false;
+    static int getMin(int[] arr){
+        int min = MAX_VALUE;
+        for(int i = 0 ; i < arr.length; i++){
+            if(arr[i] < min){
+                min = arr[i];
             }
         }
-        return true;
+        return min;
     }
 }
