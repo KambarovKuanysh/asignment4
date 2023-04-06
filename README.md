@@ -3,7 +3,7 @@
 **Explanation**: Program takes integer as input to determine lenght of an array and then fulls it. Later method iterates through array and compare minimum value with iterate and checks if it less than it. If it is, minimum value changes to iterate.<br />
 **Solution**:
 ```java
-static int Min(int[] arr){
+static int getMin(int[] arr){
         int min = MAX_VALUE;
         for(int i = 0 ; i < arr.length; i++){
             if(arr[i] < min){
@@ -18,7 +18,7 @@ static int Min(int[] arr){
 **Explanation**: Program takes integer as input to determine lenght of an array and then fulls it. Later method iterates through array adding sum to respected variable. Program returns sum of all numbers divided by count of elements<br />
 **Solution**:
 ```java
- static double mid(int[] arr){
+ static double getMid(int[] arr){
         double num = 0;
         for(int i = 0 ; i < arr.length; i++){
             num += arr[i];
@@ -28,21 +28,17 @@ static int Min(int[] arr){
 ```
 # Task3
 **Description**: Check a number for a prime<br />
-**Explanation**: Program takes integer as an input and iterates through every number until the inputted adding them into ```HashSet<Integer> set```, later iterating this set and checking if it has a true divisor. Program starts iterating with ```2```, because it's the first prime number.<br />
+**Explanation**: Method takes a number and checks it for primeness using basic mathematical principles -> Number's greatest non-reminder divider its own sqrt. 
+and checks every number between ```2``` and ```Math.sqrt(num)``` <br />
 **Solution**:
 ```java
-static boolean prime(int num){
-        HashSet<Integer> set = new HashSet<Integer>();
-        for(int i = 2; i <= num; i++){
-            if(i != num){
-                set.add(i);
-            }
-            else{
-                for(int x : set){
-                    if(num % x == 0){
-                        return false;
-                    }
-                }
+static boolean isPrime(int num) {
+        if (num < 2) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
             }
         }
         return true;
@@ -53,11 +49,11 @@ static boolean prime(int num){
 **Explanation**: Recursion breaks the loop when ```n == 1```. Returning value return ```n * num(n - 1)``` multiplying it by ```n``` itself every loop and factoring it by one less. <br />
 **Solution**:
 ```java
-static int num(int n){
+static int Numeral(int n){
        if(n == 1){
            return 1;
        }
-       return (n * num(n - 1));
+       return (n * Numeral(n - 1));
     }
 ```
 # Task5
@@ -91,12 +87,12 @@ static int power(int a, int n){
 **Solution**:
 ```java
 class Util {
-    public static void sol(int n) {
+    public static void reverseArray(int n) {
         if (n == 0) {
             return;
         }
         String num = Singleton.getScanner().next();
-        sol(n - 1);
+        reverseArray(n - 1);
         System.out.print(num + " ");
     }
 }
@@ -119,7 +115,7 @@ class Singleton {
 ```Example: 123NurlanKrasavchik -> 23NurlanKrasavchik -> 3NurlanKrasavchik -> NurlanKrasavchik ``` Program will detect that char is not in range  ```'0' <= firstChar <= '9'``` and return false <br />
 **Solution**:
 ```java
-public static boolean sol(String s) {
+public static boolean checkIfNum(String s) {
 
         if (s.length() == 0) {
             return true;
@@ -128,7 +124,7 @@ public static boolean sol(String s) {
         char firstChar = s.charAt(0);
 
         if (firstChar >= '0' && firstChar <= '9') {
-            return sol(s.substring(1));
+            return checkIfNum(s.substring(1));
 
         } else {
             return false;
@@ -137,32 +133,28 @@ public static boolean sol(String s) {
 ```
 # Task9
 **Description**: Return binomial coefficient of n and k params<br />
-**Explanation**: This task is alike with the fibonacci one. Every binominal combination can be describes by ```"ones"```. By abusing of conditions ```k=n``` ```k=0``` return ```1```. Program factors it until every member of recursion is decompounded to "ones" returning ```sol(k - 1, n - 1) + sol(k , n - 1)```. <br />
+**Explanation**: This task is alike with the fibonacci one. Every binominal combination can be describes by ```"ones"```. By abusing of conditions ```k=n``` ```k=0``` return ```1```. Program factors it until every member of recursion is decompounded to "ones" returning ```countBinaryCombo(k - 1, n - 1) + countBinaryCombo(k , n - 1)```. <br />
 **Solution**:
 ```java
-  public static int sol(int k, int n) {
+  public static int countBinaryCombo(int k, int n) {
         if(k == 0 || k == n){
             return 1;
         }
         else {
-            return sol(k - 1, n - 1) + sol(k , n - 1);
+            return countBinaryCombo(k - 1, n - 1) + countBinaryCombo(k , n - 1);
         }
     }
 ```
 # Task10
 **Description**: Return GCD of a and b<br />
-**Explanation**: This task uses basic principle of ```Euclidin algorithm```. If a is divisible by b (i.e., a % b == 0), then b is the GCD of a and b. Therefore, the method returns b.
-If a is not divisible by b but the remainder of a divided by b is 1 (i.e., a % b == 1), then 1 is the GCD of a and b. Therefore, the method returns 1.
-If neither of the above conditions is true, the method recursively calls itself with b as the first parameter and the remainder of a divided by b as the second parameter. <br />
+**Explanation**: Method uses Eclidean algorithm. Program continues to returning reminder of divide between a/b and won't stop 'till see base condition of a % b == 0 which can not be escaped.
+return will give integer value of GCD. <br />
 **Solution**:
 ```java
-  public static int sol(int a, int b) {
+  public static int findGCD(int a, int b) {
         if(a % b == 0){
             return b;
         }
-        if(a % b == 1){
-            return 1;
-        }
-        return sol(b, a%b);
+        return findGCD(b, a%b);
     }
 ```
