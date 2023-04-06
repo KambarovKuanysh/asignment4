@@ -1,24 +1,41 @@
 import java.util.Scanner;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int a = in.nextInt();
-        int n = in.nextInt();
-        System.out.println(Util.power(a, n));
+        Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt();
+        Util.reverseArray(num);
     }
 }
-class Util{
+class Util {
+
     /*
-    @power - function that takes two values [a - number], [n - power] and returns a^n. Return multiplies itself every recursion(n - 1) and end at base condition of n == 0.
-    @a - number that will be added power.
-    @n - power that will be graded for number.
-    @return - every return statement multiplies number by itself until condition n == 0 meets. Recursion progresses by subtracting n(n - 1).
+    @reverseArray - this method takes integer as an array length input and read array from console recursively making nested loops which on end will activate
+loops started before initializing "sout" values that stored read variables. Method uses singleton pattern for not re-initializing scanner and not lost read from console.
+    @n - length of array that will be inputted.
+    @return - program has a return statement just to end the cycle when input ends.
      */
-    static int power(int a, int n){
-        if(n == 0){
-            return 1;
+    public static void reverseArray(int n) {
+        if (n == 0) {
+            return;
         }
-        return a * power(a, n - 1);
+        String num = Singleton.getScanner().next();
+        reverseArray(n - 1);
+        System.out.print(num + " ");
+    }
+}
+
+class Singleton {
+    private static Scanner scanner;
+    private Singleton() {}
+    /*
+    This pattern was implemented due lost of data when re-initializing scanner. By this way we can make sure that scanner always will be the same.
+     */
+
+    public static synchronized Scanner getScanner() {
+        if (scanner == null) {
+            scanner = new Scanner(System.in);
+        }
+        return scanner;
     }
 }
